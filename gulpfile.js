@@ -28,7 +28,6 @@ gulp.task('usemin', function() {
 /**
  * Copy assets
  */
-gulp.task('copy-assets', ['copy-images', 'copy-fonts', 'copy-bower_fonts']);
 
 gulp.task('copy-images', function(){
   return gulp.src(paths.images)
@@ -58,6 +57,7 @@ gulp.task('watch', function () {
 gulp.task('webserver', function() {
   connect.server({
     root: 'dist',
+    // root: 'src',
     livereload: true
   });
 });
@@ -77,5 +77,8 @@ gulp.task('compile-less', function(){
       .pipe(gulp.dest('dist/css'));
 });
 
+gulp.task('copy-assets', ['copy-images', 'copy-fonts', 'copy-bower_fonts']);
 gulp.task('build', ['usemin', 'copy-assets']);
 gulp.task('default', ['build', 'webserver', 'livereload', 'watch']);
+
+gulp.task('src', ['src']);

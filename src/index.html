@@ -42,18 +42,23 @@
   <!-- build:js lib/angular-ui-router/angular-ui-router.js -->
   <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <!-- endbuild -->
+  <!-- build:js lib/angular-resource/angular-resource.js -->
+  <script src="/bower_components/angular-resource/angular-resource.js"></script>
+  <!-- endbuild -->
 
   <!-- build:js js/dashboard.js -->
   <script type="text/javascript" src="js/dashboard/module.js"></script>
   <script type="text/javascript" src="js/dashboard/routes.js"></script>
-  <script type="text/javascript" src="js/dashboard/controllers/master-ctrl.js"></script>
-  <script type="text/javascript" src="js/dashboard/controllers/alerts-ctrl.js"></script>
+  <script type="text/javascript" src="js/dashboard/controllers/master-controller.js"></script>
+  <script type="text/javascript" src="js/dashboard/controllers/alerts-controller.js"></script>
+  <script type="text/javascript" src="js/dashboard/controllers/humidity-controller.js"></script>
   <script type="text/javascript" src="js/dashboard/directives/loading.js"></script>
+  <script type="text/javascript" src="js/dashboard/resources/humidity-resource.js"></script>
   <!-- endbuild -->
   <!-- SCRIPTS -->
-
 </head>
-<body ng-controller="MasterCtrl">
+
+<body ng-controller="MasterController">
   <div id="page-wrapper" ng-class="{'active': toggle}" ng-cloak>
 
     <!-- Sidebar -->
@@ -62,7 +67,7 @@
       <ul class="sidebar">
         <li class="sidebar-main">
           <a href="#" ng-click="toggleSidebar()">
-            Dashboard
+            PI Dash!
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
         </li>
@@ -71,33 +76,33 @@
           <a href="#">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/tables">Tables <span class="menu-icon fa fa-table"></span></a>
+          <a href="#/timelapse">Timelapse Photos <span class="menu-icon fa fa-camera"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#">Servers <span class="menu-icon fa fa-tasks"></span></a>
+          <a href="#/humidity">Temp & Humidity <span class="menu-icon fa fa-umbrella"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#">Settings <span class="menu-icon fa fa-cogs"></span></a>
+          <a href="#/settings">Settings <span class="menu-icon fa fa-cogs"></span></a>
         </li>
-        <li class="sidebar-title separator"><span>QUICK LINKS</span></li>
-        <li class="sidebar-list">
+        <!-- <li class="sidebar-title separator"><span> </span></li> -->
+        <!--    <li class="sidebar-list">
           <a href="#" target="_blank">Forums <span class="menu-icon fa fa-external-link"></span></a>
-        </li>
+        </li> -->
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
-          <a href="https://github.com/Ehesp/Responsive-Dashboard" target="_blank">
-            Github
+          <a href="" target="_blank">
+            
           </a>
         </div>
         <div class="col-xs-4">
           <a href="#" target="_blank">
-            About
+            
           </a>
         </div>
         <div class="col-xs-4">
           <a href="#">
-            Support
+            
           </a>
         </div>
       </div>
@@ -179,8 +184,9 @@
     </div><!-- End Content Wrapper -->
   </div><!-- End Page Wrapper -->
 
+  <!-- dashboard.html -->
   <script type="text/ng-template" id="dashboard.html">
-    <div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+    <div class="row alerts-container" data-ng-controller="AlertsController" data-ng-show="alerts.length">
       <div class="col-xs-12">
         <alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
       </div>
@@ -351,7 +357,8 @@
     <!-- End Main Content -->
   </script>
 
-  <script type="text/ng-template" id="tables.html">
+  <!-- tables.html -->
+  <script type="text/ng-template" id="timelapse.html">
     <div class="row">
       <div class="col-lg-6">
         <div class="widget">
@@ -409,5 +416,47 @@
       </div>
     </div>
   </script>
+
+  <!-- humidity.html -->
+  <script type="text/ng-template" id="humidity.html">
+    <div class="row" ng-controller="HumidityController">
+      <div class="col-lg-12">
+        <div class="widget">
+          <div class="widget-header">
+            <i class="fa fa-tasks"></i> Servers
+            <a href="#" class="pull-right">Manage em'</a>
+          </div>
+          <div class="widget-body medium no-padding">
+            THERE'S STUFF IN HERE FOR SERVERS BRAH!
+            <br><br>
+            {{type}}
+            <br><br>
+            {{keys}}
+            <br><br>
+            {{humidity}}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <!-- settings.html -->
+  <script type="text/ng-template" id="settings.html">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="widget">
+          <div class="widget-header">
+            <i class="fa fa-tasks"></i> Servers
+            <a href="#" class="pull-right">Manage</a>
+          </div>
+          <div class="widget-body medium no-padding">
+            widget!?
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+
 </body>
 </html>

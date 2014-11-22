@@ -28,5 +28,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/Ehesp/Responsive-Dashboard.git"
+  },
+  "devDependencies": {
+    "angular-resource": "~1.2.26"
   }
 }
